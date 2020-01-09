@@ -1,0 +1,13 @@
+.Button {
+  width: 100px;
+  font-size: 42px;
+  margin: 10px;
+}
+
+.Plus {
+  color: green;
+}
+
+.Minus {
+  color: red;
+}
