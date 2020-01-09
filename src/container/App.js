@@ -3,6 +3,7 @@ import "./App.css";
 import Button from "../components/Button/Button";
 import Fields from "../components/Fields/Fields";
 import Result from "../components/Result/Result";
+import FunctionContext from "../context/functionContext";
 
 const App = props => {
   const [hoursState, setHoursState] = useState({
@@ -10,6 +11,10 @@ const App = props => {
     countField: 1,
     countArray: [1]
   });
+
+  const totalHoursHandler = (a, b) => {
+    console.log(a, b);
+  };
 
   const clickPlusHandler = () => {
     const newCountField = hoursState.countField + 1;
@@ -43,7 +48,10 @@ const App = props => {
       <h1>{props.appTitle}</h1>
       <Button clicked={clickPlusHandler}>+</Button>
       <Button clicked={clickMinusHandler}>-</Button>
-      <Fields numberField={hoursState.countArray} />
+      <FunctionContext.Provider value={{ totalHoursFunc: totalHoursHandler }}>
+        <Fields numberField={hoursState.countArray} />
+      </FunctionContext.Provider>
+
       <Result>KEKW</Result>
     </div>
   );
