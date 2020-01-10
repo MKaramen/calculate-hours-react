@@ -7,13 +7,42 @@ import FunctionContext from "../context/functionContext";
 
 const App = props => {
   const [hoursState, setHoursState] = useState({
-    totalHours: 0,
+    totalMins: 0,
     countField: 1,
-    countArray: [1]
+    countArray: [1],
+    buttonClicked: false
   });
 
-  const totalHoursHandler = (a, b) => {
-    console.log(a, b);
+  const hoursToMath = hours => {
+    const hoursArray = hours.split(":");
+    const hoursToMin = hoursArray[0] * 60;
+    const hoursTotalMin = hoursToMin + parseInt(hoursArray[1]);
+    return hoursTotalMin;
+  };
+
+  const totalHoursHandler = (startHourInput, endHourInput, event) => {
+    if (startHourInput && endHourInput) {
+      const startTotalMin = hoursToMath(startHourInput);
+      const endTotalMin = hoursToMath(endHourInput);
+
+      let resultTotalMin = endTotalMin - startTotalMin;
+
+      if (resultTotalMin < 0) {
+        resultTotalMin = 24 * 60 + resultTotalMin;
+      }
+
+      // When we click on the button it takes all the input and send it to the state
+      // if (hoursState.buttonClicked) {
+      //   console.log("in");
+      //   const newTime = resultTotalMin + hoursState.totalMins;
+      //   console.log(newTime);
+      //   setHoursState({
+      //     ...hoursState,
+      //     totalMins: newTime,
+      //     buttonClicked: false
+      //   });
+      // }
+    }
   };
 
   const clickPlusHandler = () => {
@@ -43,6 +72,13 @@ const App = props => {
     }
   };
 
+  const clickCalculateHandler = () => {
+    setHoursState({
+      ...hoursState,
+      buttonClicked: true
+    });
+  };
+
   return (
     <div className="App">
       <h1>{props.appTitle}</h1>
@@ -51,8 +87,10 @@ const App = props => {
       <FunctionContext.Provider value={{ totalHoursFunc: totalHoursHandler }}>
         <Fields numberField={hoursState.countArray} />
       </FunctionContext.Provider>
+      <Button clicked={clickCalculateHandler}>Calculer</Button>
+      <Button clicked={clickMinusHandler}>Reset</Button>
 
-      <Result>KEKW</Result>
+      <Result>{`Total des minutes : ${hoursState.totalMins}`}</Result>
     </div>
   );
 };

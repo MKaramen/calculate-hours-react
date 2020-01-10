@@ -1,7 +1,8 @@
 .Button {
-  width: 100px;
+  width: 200px;
   font-size: 42px;
   margin: 10px;
+  border-radius: 10px;
 }
 
 .Plus {
@@ -10,4 +11,14 @@
 
 .Minus {
   color: red;
+}
+
+.Calculate {
+  color: white;
+  background-color: green;
+}
+
+.Reset {
+  color: white;
+  background-color: red;
 }

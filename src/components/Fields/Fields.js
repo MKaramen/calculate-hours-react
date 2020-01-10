@@ -7,7 +7,7 @@ const Fields = props => {
     return <Field key={index} />;
   });
 
-  return <React.Fragment>{fields}</React.Fragment>;
+  return <div className={styles.Fields}>{fields}</div>;
 };
 
 export default Fields;
