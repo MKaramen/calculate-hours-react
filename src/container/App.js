@@ -52,7 +52,6 @@ const App = props => {
       if (resultTotalMin < 0) {
         resultTotalMin = 24 * 60 + resultTotalMin;
       }
-      // When we click on the button it takes all the input and send it to the state
 
       const tempArray = [...hoursState.totalMinArray];
       tempArray[keyArray] = resultTotalMin;
@@ -88,10 +87,15 @@ const App = props => {
       }
     });
 
+    const hours = Math.floor(tempMin / 60);
+    const min = Math.floor(tempMin % 60);
+    const finalHour = min < 10 ? `${hours}:0${min}` : `${hours}:${min}`;
+
     setHoursState({
       ...hoursState,
       currentMins: tempMin,
-      totalMins: 0
+      totalMins: 0,
+      hour: finalHour
     });
   };
 
@@ -104,19 +108,6 @@ const App = props => {
       buttonClicked: false,
       totalMinArray: [],
       hour: "0"
-    });
-  };
-
-  const totalHours = () => {
-    const minState = hoursState.currentMins;
-    console.log(minState);
-    const hours = Math.floor(minState / 60);
-    const min = Math.floor(minState % 60);
-    const finalHour = `${hours}:${min}`;
-    console.log(finalHour);
-    setHoursState({
-      ...hoursState,
-      hour: finalHour
     });
   };
 
