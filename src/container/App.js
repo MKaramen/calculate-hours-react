@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Button from "../components/Button/Button";
 import Fields from "../components/Fields/Fields";
@@ -9,54 +9,12 @@ const App = props => {
   const [hoursState, setHoursState] = useState({
     totalMins: 0,
     countField: 1,
-    countArray: [1],
+    currentMins: 0,
+    countArray: [],
     buttonClicked: false,
-    totalMinArray: []
+    totalMinArray: [],
+    hour: "0"
   });
-
-  const hoursToMath = hours => {
-    const hoursArray = hours.split(":");
-    const hoursToMin = hoursArray[0] * 60;
-    const hoursTotalMin = hoursToMin + parseInt(hoursArray[1]);
-    return hoursTotalMin;
-  };
-
-  const totalHoursHandler = (startHourInput, endHourInput, keyArray) => {
-    if (startHourInput && endHourInput) {
-      const startTotalMin = hoursToMath(startHourInput);
-      const endTotalMin = hoursToMath(endHourInput);
-
-      let resultTotalMin = endTotalMin - startTotalMin;
-
-      if (resultTotalMin < 0) {
-        resultTotalMin = 24 * 60 + resultTotalMin;
-      }
-
-      console.log(keyArray);
-      // When we click on the button it takes all the input and send it to the state
-
-      const tempArray = [...hoursState.totalMinArray];
-      tempArray[keyArray] = resultTotalMin;
-      console.log(tempArray);
-
-      setHoursState({
-        ...hoursState,
-        totalMinArray: tempArray
-      });
-    }
-  };
-
-  const clickPlusHandler = () => {
-    const newCountField = hoursState.countField + 1;
-    const newArray = [...hoursState.countArray];
-    newArray.push(newCountField);
-
-    setHoursState({
-      ...hoursState,
-      countField: newCountField,
-      countArray: newArray
-    });
-  };
 
   const clickMinusHandler = () => {
     const newCountField = hoursState.countField - 1;
@@ -77,11 +35,88 @@ const App = props => {
     }
   };
 
+  const hoursToMath = hours => {
+    const hoursArray = hours.split(":");
+    const hoursToMin = hoursArray[0] * 60;
+    const hoursTotalMin = hoursToMin + parseInt(hoursArray[1]);
+    return hoursTotalMin;
+  };
+
+  const totalHoursHandler = (startHourInput, endHourInput, keyArray) => {
+    if (startHourInput && endHourInput) {
+      const startTotalMin = hoursToMath(startHourInput);
+      const endTotalMin = hoursToMath(endHourInput);
+
+      let resultTotalMin = endTotalMin - startTotalMin;
+
+      if (resultTotalMin < 0) {
+        resultTotalMin = 24 * 60 + resultTotalMin;
+      }
+      // When we click on the button it takes all the input and send it to the state
+
+      const tempArray = [...hoursState.totalMinArray];
+      tempArray[keyArray] = resultTotalMin;
+
+      setHoursState({
+        ...hoursState,
+        totalMinArray: tempArray
+      });
+    }
+  };
+
+  const clickPlusHandler = () => {
+    const newCountField = hoursState.countField + 1;
+    const newArray = [...hoursState.countArray];
+    newArray.push(newCountField);
+
+    setHoursState({
+      ...hoursState,
+      countField: newCountField,
+      countArray: newArray
+    });
+  };
+
   const clickCalculateHandler = () => {
     const resultArray = [...hoursState.totalMinArray];
+    console.log(resultArray);
+
+    let tempMin = hoursState.totalMins;
+
     resultArray.forEach(number => {
-      const tempMin = hoursState.totalMins + number;
-      setHoursState({ ...hoursState, totalMins: tempMin });
+      if (number) {
+        tempMin += number;
+      }
+    });
+
+    setHoursState({
+      ...hoursState,
+      currentMins: tempMin,
+      totalMins: 0
+    });
+  };
+
+  const clickResetHandler = e => {
+    setHoursState({
+      totalMins: 0,
+      countField: 1,
+      currentMins: 0,
+      countArray: [],
+      buttonClicked: false,
+      totalMinArray: [],
+      hour: "0"
+    });
+  };
+
+  const totalHours = () => {
+    const minState = hoursState.currentMins;
+    console.log(minState);
+    const hours = Math.floor(minState / 60);
+    const min = Math.floor(minState % 60);
+    const finalHour = `${hours}:${min}`;
+    console.log(finalHour);
+    setHoursState({
+      ...hoursState,
+      hour: finalHour
     });
   };
 
@@ -94,9 +129,10 @@ const App = props => {
         <Fields numberField={hoursState.countArray} />
       </FunctionContext.Provider>
       <Button clicked={clickCalculateHandler}>Calculer</Button>
-      <Button clicked={clickMinusHandler}>Reset</Button>
+      <Button clicked={clickResetHandler}>Reset</Button>
 
-      <Result>{`Total des minutes : ${hoursState.totalMins}`}</Result>
+      <Result>{`Total des minutes : ${hoursState.currentMins}`}</Result>
+      <Result>{`Total des heures : ${hoursState.hour}`}</Result>
     </div>
   );
 };
