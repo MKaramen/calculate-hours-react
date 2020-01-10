@@ -3,7 +3,7 @@ import styles from "./Result.module.css";
 
 const Result = props => (
   <React.Fragment>
-    <p>{props.children}</p>
+    <p className={styles.Result}>{props.children}</p>
   </React.Fragment>
 );
 

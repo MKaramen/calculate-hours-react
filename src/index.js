@@ -5,7 +5,7 @@ import App from "./container/App";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
-  <App appTitle="Count Hours" />,
+  <App appTitle="Calculer heures" />,
   document.getElementById("root")
 );
 
