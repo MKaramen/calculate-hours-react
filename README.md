@@ -6,10 +6,11 @@ The tool can calculate the time between two different hours. You can increase/de
 
 ![preview](screenApp/previewApp.png)
 
-## Technology used
+### Technology used
 
 React
 
-## Author
+### Author
 
 Matis Karamenderes
+10/01/2020
