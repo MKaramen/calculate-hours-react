@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/calculate-hours/static/css/main.2a319a70.chunk.css",
+    "main.js": "/calculate-hours/static/js/main.c9d1ad9d.chunk.js",
+    "main.js.map": "/calculate-hours/static/js/main.c9d1ad9d.chunk.js.map",
+    "runtime-main.js": "/calculate-hours/static/js/runtime-main.a2d1511e.js",
+    "runtime-main.js.map": "/calculate-hours/static/js/runtime-main.a2d1511e.js.map",
+    "static/js/2.521b7eb9.chunk.js": "/calculate-hours/static/js/2.521b7eb9.chunk.js",
+    "static/js/2.521b7eb9.chunk.js.map": "/calculate-hours/static/js/2.521b7eb9.chunk.js.map",
+    "index.html": "/calculate-hours/index.html",
+    "precache-manifest.13f446e6a14edfd1d44ce00df7a1cfcd.js": "/calculate-hours/precache-manifest.13f446e6a14edfd1d44ce00df7a1cfcd.js",
+    "service-worker.js": "/calculate-hours/service-worker.js",
+    "static/css/main.2a319a70.chunk.css.map": "/calculate-hours/static/css/main.2a319a70.chunk.css.map",
+    "static/js/2.521b7eb9.chunk.js.LICENSE": "/calculate-hours/static/js/2.521b7eb9.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a2d1511e.js",
+    "static/js/2.521b7eb9.chunk.js",
+    "static/css/main.2a319a70.chunk.css",
+    "static/js/main.c9d1ad9d.chunk.js"
+  ]
+}
