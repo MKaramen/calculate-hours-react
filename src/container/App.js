@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Button from "../components/Button/Button";
 import Fields from "../components/Fields/Fields";
@@ -78,7 +78,11 @@ const App = props => {
   };
 
   const clickCalculateHandler = () => {
-    console.log("USELESS");
+    const resultArray = [...hoursState.totalMinArray];
+    resultArray.forEach(number => {
+      const tempMin = hoursState.totalMins + number;
+      setHoursState({ ...hoursState, totalMins: tempMin });
+    });
   };
 
   return (
