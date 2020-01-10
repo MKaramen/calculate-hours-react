@@ -4,6 +4,7 @@ The tool can calculate the time between two different hours. You can increase/de
 
 ## Preview
 
+<a href="https://mkaramen.github.io/calculate-hours/"> Check it out here </a>
 ![preview](screenApp/previewApp.png)
 
 ### Technology used
