@@ -10,7 +10,8 @@ const App = props => {
     totalMins: 0,
     countField: 1,
     countArray: [1],
-    buttonClicked: false
+    buttonClicked: false,
+    totalMinArray: []
   });
 
   const hoursToMath = hours => {
@@ -20,7 +21,7 @@ const App = props => {
     return hoursTotalMin;
   };
 
-  const totalHoursHandler = (startHourInput, endHourInput, event) => {
+  const totalHoursHandler = (startHourInput, endHourInput, keyArray) => {
     if (startHourInput && endHourInput) {
       const startTotalMin = hoursToMath(startHourInput);
       const endTotalMin = hoursToMath(endHourInput);
@@ -31,17 +32,17 @@ const App = props => {
         resultTotalMin = 24 * 60 + resultTotalMin;
       }
 
+      console.log(keyArray);
       // When we click on the button it takes all the input and send it to the state
-      // if (hoursState.buttonClicked) {
-      //   console.log("in");
-      //   const newTime = resultTotalMin + hoursState.totalMins;
-      //   console.log(newTime);
-      //   setHoursState({
-      //     ...hoursState,
-      //     totalMins: newTime,
-      //     buttonClicked: false
-      //   });
-      // }
+
+      const tempArray = [...hoursState.totalMinArray];
+      tempArray[keyArray] = resultTotalMin;
+      console.log(tempArray);
+
+      setHoursState({
+        ...hoursState,
+        totalMinArray: tempArray
+      });
     }
   };
 
@@ -60,12 +61,16 @@ const App = props => {
   const clickMinusHandler = () => {
     const newCountField = hoursState.countField - 1;
     const newArray = [...hoursState.countArray];
+    const newTimeArray = [...hoursState.totalMinArray];
+    newTimeArray.pop();
     newArray.pop();
+
     if (newCountField > 0) {
       setHoursState({
         ...hoursState,
         countField: newCountField,
-        countArray: newArray
+        countArray: newArray,
+        totalMinArray: newTimeArray
       });
     } else {
       console.log("non nononononon");
@@ -73,10 +78,7 @@ const App = props => {
   };
 
   const clickCalculateHandler = () => {
-    setHoursState({
-      ...hoursState,
-      buttonClicked: true
-    });
+    console.log("USELESS");
   };
 
   return (

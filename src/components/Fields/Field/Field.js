@@ -18,7 +18,8 @@ const Field = props => {
         onChange={() =>
           hoursFunc.totalHoursFunc(
             inputPlusRef.current.value,
-            inputMinusRef.current.value
+            inputMinusRef.current.value,
+            props.keyArray
           )
         }
       />
@@ -31,7 +32,8 @@ const Field = props => {
         onChange={() =>
           hoursFunc.totalHoursFunc(
             inputPlusRef.current.value,
-            inputMinusRef.current.value
+            inputMinusRef.current.value,
+            props.keyArray
           )
         }
       />

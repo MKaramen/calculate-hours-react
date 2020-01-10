@@ -4,7 +4,7 @@ import Field from "./Field/Field";
 
 const Fields = props => {
   const fields = props.numberField.map((field, index) => {
-    return <Field key={index} />;
+    return <Field key={index} keyArray={index} />;
   });
 
   return <div className={styles.Fields}>{fields}</div>;
