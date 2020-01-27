@@ -4,7 +4,7 @@ The tool can calculate the time between two different hours. You can increase/de
 
 ## Preview
 
-<a style="margin:auto" href="https://mkaramen.github.io/calculate-hours/"> Check it out here </a>
+<a href="https://mkaramen.github.io/calculate-hours-react/"> Check it out here </a>
 ![preview](screenApp/previewApp.png)
 
 ### Technology used
